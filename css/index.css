@@ -473,7 +473,7 @@ ul{
       background: none;
       padding: 20px;
       display: inline-block;
-      transform: scale(3);
+      transform: scale(2.5);
       
     }
 
@@ -701,7 +701,7 @@ ul{
 }
 
  .material-symbols-outlined {
-      transform: scale(2.5);
+      transform: scale(1.8);
       
     }
 
@@ -801,7 +801,7 @@ ul{
     margin: auto;
 }
 .material-symbols-outlined {
-      transform: scale(1.5);
+      transform: scale(1.3);
       
     }
 /* 공지사항 */
