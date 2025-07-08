@@ -800,6 +800,10 @@ ul{
     padding: 20px 30px;
     margin: auto;
 }
+.material-symbols-outlined {
+      transform: scale(1.5);
+      
+    }
 /* 공지사항 */
 #notice p{
     line-height: 2.4;
