@@ -18,12 +18,14 @@ a{
     color: black;
 }
 img,video{
-    width: 100%;
+    max-width: 100%;
+    display: block;
 }
 #layout{
     position: relative;
     max-width: 1200px; width: 100%;
     height: auto; margin: auto; 
+    overflow: hidden;
 }
 
 
@@ -131,7 +133,6 @@ header>div:nth-child(1){
     line-height: 35px;
     font-size: 20px;
     margin: auto;
-/*     border: 1px solid red; */
 
 }
 
@@ -336,7 +337,7 @@ ul{
 /* 메인 홈페이지 베스트 상품 */
 #best_product{
     position: relative;
-    max-width: 1200px; height: 800px;
+    max-width: 1200px; height: 1000px;
     padding-top:200px;
     display: flex;
     flex-direction: column;
@@ -344,6 +345,8 @@ ul{
     justify-content: center;
     text-align: center;
     align-items: center;
+
+   
 }
 #best_product h3{
     display: none;
@@ -364,6 +367,7 @@ ul{
    transform-style:preserve-3d;
    transform: rotateY(0deg);
    transition: transform 1s;
+   
    /* animation: ani_wrap linear 20s infinite; */
     top: 10%;
    /* cursor: grabbing; */ /* 잡고움직이는중 */
@@ -379,6 +383,7 @@ ul{
     object-fit: cover;
     position: relative;
     perspective: 1000px; /*입체 효과를 주려면 해당영역의 부모 요소에 줘야함 */
+    
 }
 
 #best_product h3{
@@ -448,7 +453,6 @@ ul{
     padding: 20px 60px;
     display: flex;
     justify-content: space-between;
-    
 }
  #arrow.a_hide{
         visibility: hidden;
@@ -458,7 +462,6 @@ ul{
     border: none;
 }
  .material-symbols-outlined {
-   
       font-family: 'Material Symbols Outlined';
       font-variation-settings: 
         'FILL' 0,
@@ -470,13 +473,11 @@ ul{
       background: none;
       padding: 20px;
       display: inline-block;
-      transform: scale(4);
+      transform: scale(3);
+      
     }
 
    
-
-
-
 
 /* 커뮤니티 */
 #notice{
@@ -513,7 +514,7 @@ ul{
 }
 
 .img_wrap{
-    min-width: 400px; min-height: 600px;
+    min-width: 400px; min-height: 600px; 
     }
 
 .img_wrap img{
@@ -694,9 +695,16 @@ ul{
 
 /* 화살표 */
 #arrow{
-    top: 50%;
+    top: 90%;
     padding: 20px 30px;
+    margin: auto;
 }
+
+ .material-symbols-outlined {
+      transform: scale(2.5);
+      
+    }
+
 /* 공지사항 */
 #notice p{
     line-height: 2;
@@ -787,7 +795,11 @@ ul{
 #wrap_4{
     transform: rotateY(-90deg) translateZ(120px) ;
 }
-
+#arrow{
+    top: 60%;
+    padding: 20px 30px;
+    margin: auto;
+}
 /* 공지사항 */
 #notice p{
     line-height: 2.4;
