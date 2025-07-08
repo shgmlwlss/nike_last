@@ -6,34 +6,55 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const $cube = document.querySelector("#cube");
         const $best_img = document.querySelector("#best_img");
-        
-        /* x축에 한해서만 */
+
         let drag = false;
         let previousX = 0;
         let currentX = 0;
 
-        $best_img.addEventListener("mousedown",e=>{
-            drag = true;
-            previousX = e.clientX; //현재 마우스 위치 저장
-            $best_img.style.cursor = "grabbing"; //잡고 있는 중
-        });
+        //다중이벤트 처리하기 => 마우스/터치 함수호출()
+        const start_drag = (e)=>{
+            drag = true; /* 드래그가 진행중이니까 */
+            if(e.type === "touchstart"){
+                previousX = e.touches[0].clientX; /* client ==> 좌표 값 계산 => 얼마나 떨어졌는지 */
+            }else{
+                previousX = e.clientX;
+            }
+            $best_img.style.cursor = "grabbing";
+        };
 
-        window.addEventListener("mouseup",()=>{
-            drag = false;
-            $best_img.style.cursor = "grab"; /* 잡으려고 준비중 */
-        });
+        //드래그 끝남
+        const end_drag =()=>{
+            drag = false;  /* 드래그가 끝남 */
+            $best_img.style.cursor = "grab";
+        };
 
-        $best_img.addEventListener("mousemove",e=>{
-            if(!drag)return;
+        //드래그 중 이동처리
+        const hands_move = (e)=>{
+            if(!drag) return;
 
-            const deltaX = e.clientX - previousX;
-            previousX = e.clientX;
+            let currnetXpos;
+            if(e.type === "touchmove"){
+                currnetXpos = e.touches[0].clientX;
+            }else{
+                currnetXpos = e.clientX;
+            }
 
-            //값이 커서 벗어나지 않게 // ==> 그러면 y축으로 내려오는 현상이 발생함==> 급격한 이동 방지
-            const moveX = Math.min(Math.max(deltaX, -50), 50);
-            currentX += moveX * 0.5;
+            const deltaX = currnetXpos - previousX;
+            previousX = currnetXpos;
+
+            const move_x = Math.min(Math.max(deltaX, -50),50);
+            currentX += move_x * 0.5;
             $cube.style.transform = `rotateY(${currentX}deg)`;
-        });
+        }
+
+        
+        $best_img.addEventListener("mousedown", start_drag);
+        window.addEventListener("mouseup", end_drag);
+        window.addEventListener("mousemove", hands_move);
+
+        $best_img.addEventListener("touchstart", start_drag);
+        window.addEventListener("touchend", end_drag);
+        window.addEventListener("touchmove", hands_move);
 
 
         /* 다음 페이지를 누르면 다른 제품이 보인다. ==>4장이 한꺼번에 바뀐다. */
@@ -43,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         /* 그동안 한 교체랑 달리 배열로 접근하기 ==> 객체화로 하기에는 키가 명확하지 않아서 */
         const change_img =[
-            ["image/red_d.jpg" , "image/hands.jpg" , "image/skyblue.jpg", "image/black2.jpg"],
+            ["image/red_d.jpg" , "image/hands.jpg" , "image/hands.jpg", "image/black2.jpg"],
             ["image/green2.jpg" , "image/gray_2.jpg" , "image/gray_3.jpg", "image/green2.jpg"],
              ["image/red_d.jpg" , "image/hands.jpg" , "image/gray_3.jpg", "image/black2.jpg"],
             ["image/hands.jpg" , "image/green2.jpg" , "image/hands.jpg", "image/red_d.jpg"]
@@ -65,6 +86,30 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             });
         });
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   // 첫 번째 타자 효과
@@ -288,6 +333,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }  
         )
 
-        
+       
 
         }); //js end
